@@ -25,9 +25,11 @@ export const Orders = async () => {
     const orders = await response.json()
 
     let ordersHTML = "<h2>Custom Car Orders</h2><ul>"
-    const orderItems = orders.map(order => {
-        const orderPrice = order.paint.price + order.interior.price + order.technology.price + order.wheel.price
-        return `
+    const orderItems = orders
+        .filter(order => order.paint && order.interior && order.technology && order.wheel)
+        .map(order => {
+            const orderPrice = order.paint.price + order.interior.price + order.technology.price + order.wheel.price
+            return `
                 <section class="order-container">
                     <h2>Order ${order.id}</h2>
                     <p>Paint: ${order.paint.color}</p>
@@ -37,7 +39,7 @@ export const Orders = async () => {
                     <p>Total Price: $${orderPrice.toFixed(2)}</p>
                 </section>
             `
-    })
+        })
 
     ordersHTML += orderItems.join("")
     ordersHTML += "</ul>"

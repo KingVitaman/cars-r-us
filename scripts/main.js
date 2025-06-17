@@ -72,3 +72,40 @@ document.addEventListener("click", async (clickEvent) => {
 document.addEventListener("neworderCreated", renderOptions);
 
 renderOptions();
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('strobe');
+    setTimeout(() => {
+        const flashbang = document.getElementById('flashbang');
+        if (flashbang) flashbang.remove();
+    }, 1500);
+
+    // Try to autoplay the glittercore audio
+    const audio = document.getElementById('glittercore-audio');
+    if (audio) {
+        audio.volume = 1.0;
+        audio.currentTime = 0;
+        audio.play().catch((e) => {
+            // Autoplay might be blocked by the browser
+            console.warn('Autoplay was blocked:', e);
+        });
+    }
+});
+
+document.getElementById('logo-play-btn')?.addEventListener('click', () => {
+    const audio = document.getElementById('glittercore-audio');
+    if (audio) {
+        audio.volume = 1.0;
+        audio.play();
+    }
+    // Optionally disable the button after playing
+    document.getElementById('logo-play-btn').disabled = true;
+});
+
+document.getElementById('stop-glittercore')?.addEventListener('click', () => {
+    const audio = document.getElementById('glittercore-audio');
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+});

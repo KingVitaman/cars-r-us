@@ -93,11 +93,25 @@
   ],
   "orders": [
     {
+      "interiorId": "",
+      "wheelId": "",
+      "technologyId": "",
+      "paintId": "",
+      "id": 1
+    },
+    {
+      "interiorId": "",
+      "wheelId": "",
+      "technologyId": "",
+      "paintId": "",
+      "id": 2
+    },
+    {
       "interiorId": "1",
       "wheelId": "1",
       "technologyId": "1",
       "paintId": "1",
-      "id": 1
+      "id": 3
     }
   ]
 }

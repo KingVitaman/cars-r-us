@@ -4,263 +4,128 @@
   <meta charset="UTF-8">
   <title>Cars R Us</title>
   <link rel="stylesheet" href="styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&display=swap" rel="stylesheet">
 </head>
 <body>
-  <svg class="svg-background" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <div id="flashbang"></div>
+  <audio id="glittercore-audio" src="glittercore.mp3" preload="auto" style="display:none"></audio>
+  <svg class="background" width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <!-- Dark cinematic gradient -->
-      <linearGradient id="darkBg" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
-        <stop offset="25%" style="stop-color:#1a1a2e;stop-opacity:1" />
-        <stop offset="75%" style="stop-color:#16213e;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#0f0f23;stop-opacity:1" />
-      </linearGradient>
-      
-      <!-- Neon orange/yellow gradient -->
-      <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:0.8" />
-        <stop offset="50%" style="stop-color:#f7931e;stop-opacity:0.9" />
-        <stop offset="100%" style="stop-color:#ffd23f;stop-opacity:0.7" />
-      </linearGradient>
-      
-      <!-- City skyline gradient -->
-      <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:0.9" />
-        <stop offset="100%" style="stop-color:#1a252f;stop-opacity:1" />
-      </linearGradient>
-      
-      <!-- Spotlight effect -->
-      <radialGradient id="spotlight" cx="30%" cy="20%" r="60%">
-        <stop offset="0%" style="stop-color:#ffd23f;stop-opacity:0.3" />
-        <stop offset="50%" style="stop-color:#f7931e;stop-opacity:0.1" />
-        <stop offset="100%" style="stop-color:#000000;stop-opacity:0" />
+      <radialGradient id="rainbow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:1" />
+        <stop offset="25%" style="stop-color:#ffff00;stop-opacity:1" />
+        <stop offset="50%" style="stop-color:#00ffff;stop-opacity:1" />
+        <stop offset="75%" style="stop-color:#ff00ff;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#ffff00;stop-opacity:1" />
       </radialGradient>
-      
-      <!-- Glow filter -->
-      <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-        <feMerge> 
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-      
-      <!-- Strong shadow -->
-      <filter id="hardShadow" x="-50%" y="-50%" width="200%" height="200%">
-        <feDropShadow dx="3" dy="6" stdDeviation="5" flood-color="#000000" flood-opacity="0.8"/>
+      <linearGradient id="unicorn-horn" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:1" />
+        <stop offset="50%" style="stop-color:#ffff00;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#00ffff;stop-opacity:1" />
+      </linearGradient>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="10" result="blur" />
+        <feComposite in="SourceGraphic" in2="blur" operator="over" />
       </filter>
     </defs>
     
-    <!-- Dark background -->
-    <rect width="1200" height="800" fill="url(#darkBg)"/>
+    <!-- Unicorn Explosion -->
+    <ellipse cx="500" cy="500" rx="400" ry="400" fill="url(#rainbow)" opacity="0.8">
+      <animate attributeName="rx" values="400;450;400" dur="0.5s" repeatCount="indefinite" />
+      <animate attributeName="ry" values="400;450;400" dur="0.5s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="0.5s" repeatCount="indefinite" />
+    </ellipse>
     
-    <!-- Spotlight effect -->
-    <rect width="1200" height="800" fill="url(#spotlight)"/>
-    
-    <!-- City skyline silhouette -->
-    <g fill="url(#buildingGradient)" opacity="0.7">
-      <!-- Background buildings -->
-      <rect x="0" y="400" width="80" height="400"/>
-      <rect x="100" y="350" width="60" height="450"/>
-      <rect x="180" y="380" width="70" height="420"/>
-      <rect x="270" y="320" width="90" height="480"/>
-      <rect x="380" y="360" width="50" height="440"/>
-      <rect x="450" y="300" width="80" height="500"/>
-      <rect x="550" y="340" width="65" height="460"/>
-      <rect x="630" y="280" width="95" height="520"/>
-      <rect x="750" y="360" width="55" height="440"/>
-      <rect x="820" y="320" width="75" height="480"/>
-      <rect x="920" y="340" width="60" height="460"/>
-      <rect x="1000" y="300" width="85" height="500"/>
-      <rect x="1100" y="380" width="70" height="420"/>
-      
-      <!-- Building details -->
-      <rect x="110" y="360" width="8" height="12" fill="#ffd23f" opacity="0.6"/>
-      <rect x="130" y="370" width="8" height="12" fill="#ffd23f" opacity="0.6"/>
-      <rect x="300" y="340" width="10" height="15" fill="#ff6b35" opacity="0.8"/>
-      <rect x="320" y="360" width="10" height="15" fill="#ff6b35" opacity="0.8"/>
-      <rect x="470" y="320" width="8" height="12" fill="#ffd23f" opacity="0.6"/>
-      <rect x="490" y="340" width="8" height="12" fill="#ffd23f" opacity="0.6"/>
-      <rect x="660" y="300" width="12" height="18" fill="#f7931e" opacity="0.7"/>
-      <rect x="680" y="320" width="12" height="18" fill="#f7931e" opacity="0.7"/>
-      <rect x="1020" y="320" width="10" height="15" fill="#ff6b35" opacity="0.8"/>
-      <rect x="1040" y="340" width="10" height="15" fill="#ff6b35" opacity="0.8"/>
+    <!-- Diamond Explosion -->
+    <g transform="translate(500,500)">
+      <path d="M0,-100 L50,-50 L100,0 L50,50 L0,100 L-50,50 L-100,0 L-50,-50 Z" fill="#fff" opacity="0.9">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.5s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="0.5s" repeatCount="indefinite" />
+      </path>
+      <path d="M0,-150 L75,-75 L150,0 L75,75 L0,150 L-75,75 L-150,0 L-75,-75 Z" fill="#fff" opacity="0.8">
+        <animateTransform attributeName="transform" type="rotate" from="45" to="405" dur="0.5s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="0.5s" repeatCount="indefinite" />
+      </path>
     </g>
     
-    <!-- Street level with cars -->
-    <rect x="0" y="700" width="1200" height="100" fill="#1a1a1a"/>
-    
-    <!-- Street lights -->
-    <g opacity="0.8">
-      <line x1="200" y1="650" x2="200" y2="750" stroke="#2c3e50" stroke-width="4"/>
-      <circle cx="200" cy="650" r="8" fill="url(#neonGradient)" filter="url(#neonGlow)"/>
-      
-      <line x1="500" y1="650" x2="500" y2="750" stroke="#2c3e50" stroke-width="4"/>
-      <circle cx="500" cy="650" r="8" fill="url(#neonGradient)" filter="url(#neonGlow)"/>
-      
-      <line x1="800" y1="650" x2="800" y2="750" stroke="#2c3e50" stroke-width="4"/>
-      <circle cx="800" cy="650" r="8" fill="url(#neonGradient)" filter="url(#neonGlow)"/>
-      
-      <line x1="1000" y1="650" x2="1000" y2="750" stroke="#2c3e50" stroke-width="4"/>
-      <circle cx="1000" cy="650" r="8" fill="url(#neonGradient)" filter="url(#neonGlow)"/>
+    <!-- Sparkle Stars -->
+    <g>
+      <path d="M100,100 L110,90 L120,100 L110,110 Z" fill="#fff" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="0.3s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.3s" repeatCount="indefinite" />
+      </path>
+      <path d="M800,200 L810,190 L820,200 L810,210 Z" fill="#fff" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="0.3s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate" from="45" to="405" dur="0.3s" repeatCount="indefinite" />
+      </path>
+      <path d="M200,800 L210,790 L220,800 L210,810 Z" fill="#fff" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="0.3s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate" from="90" to="450" dur="0.3s" repeatCount="indefinite" />
+      </path>
+      <path d="M900,900 L910,890 L920,900 L910,910 Z" fill="#fff" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="0.3s" repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="rotate" from="135" to="495" dur="0.3s" repeatCount="indefinite" />
+      </path>
     </g>
     
-    <!-- Car silhouettes on street -->
-    <g fill="#2c3e50" opacity="0.6">
-      <!-- Sports car 1 -->
-      <path d="M150,720 L130,710 L120,705 L110,700 L90,700 L80,705 L70,710 L50,720 L50,735 L60,740 L70,740 L70,735 L130,735 L130,740 L140,740 L150,735 Z"/>
-      <circle cx="75" cy="738" r="5" fill="#1a1a1a"/>
-      <circle cx="125" cy="738" r="5" fill="#1a1a1a"/>
-      
-      <!-- Sports car 2 -->
-      <path d="M400,725 L380,715 L370,710 L360,705 L340,705 L330,710 L320,715 L300,725 L300,740 L310,745 L320,745 L320,740 L380,740 L380,745 L390,745 L400,740 Z"/>
-      <circle cx="325" cy="743" r="5" fill="#1a1a1a"/>
-      <circle cx="375" cy="743" r="5" fill="#1a1a1a"/>
-      
-      <!-- SUV -->
-      <path d="M950,715 L920,705 L910,700 L900,695 L870,695 L860,700 L850,705 L820,715 L820,740 L830,745 L845,745 L845,740 L925,740 L925,745 L940,745 L950,740 Z"/>
-      <circle cx="855" cy="743" r="6" fill="#1a1a1a"/>
-      <circle cx="915" cy="743" r="6" fill="#1a1a1a"/>
+    <!-- Rainbow Explosion Waves -->
+    <g>
+      <path d="M0,500 Q250,400 500,500 T1000,500" stroke="#ff00ff" stroke-width="20" fill="none" opacity="0.8">
+        <animate attributeName="d" values="M0,500 Q250,400 500,500 T1000,500;M0,500 Q250,600 500,500 T1000,500;M0,500 Q250,400 500,500 T1000,500" dur="0.5s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="0.5s" repeatCount="indefinite" />
+      </path>
+      <path d="M0,500 Q250,450 500,500 T1000,500" stroke="#ffff00" stroke-width="20" fill="none" opacity="0.8">
+        <animate attributeName="d" values="M0,500 Q250,450 500,500 T1000,500;M0,500 Q250,550 500,500 T1000,500;M0,500 Q250,450 500,500 T1000,500" dur="0.5s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="0.5s" repeatCount="indefinite" />
+      </path>
+      <path d="M0,500 Q250,475 500,500 T1000,500" stroke="#00ffff" stroke-width="20" fill="none" opacity="0.8">
+        <animate attributeName="d" values="M0,500 Q250,475 500,500 T1000,500;M0,500 Q250,525 500,500 T1000,500;M0,500 Q250,475 500,500 T1000,500" dur="0.5s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.8;1;0.8" dur="0.5s" repeatCount="indefinite" />
+      </path>
     </g>
     
-    <!-- Neon accent lines -->
-    <g stroke="url(#neonGradient)" stroke-width="3" fill="none" filter="url(#neonGlow)" opacity="0.8">
-      <line x1="0" y1="100" x2="300" y2="100"/>
-      <line x1="900" y1="100" x2="1200" y2="100"/>
-      <line x1="0" y1="700" x2="1200" y2="700"/>
-    </g>
-    
-    <!-- Diagonal light streaks -->
-    <g opacity="0.3">
-      <polygon points="0,0 100,0 300,200 200,200" fill="url(#neonGradient)"/>
-      <polygon points="1200,0 1100,0 900,200 1000,200" fill="url(#neonGradient)"/>
-      <polygon points="0,800 200,600 300,600 100,800" fill="url(#neonGradient)"/>
-      <polygon points="1200,800 1000,600 900,600 1100,800" fill="url(#neonGradient)"/>
-    </g>
-    
-    <!-- Atmospheric particles/dust -->
-    <g opacity="0.2">
-      <circle cx="150" cy="200" r="2" fill="#ffd23f"/>
-      <circle cx="300" cy="150" r="1.5" fill="#f7931e"/>
-      <circle cx="450" cy="250" r="1" fill="#ff6b35"/>
-      <circle cx="600" cy="180" r="2" fill="#ffd23f"/>
-      <circle cx="750" cy="220" r="1.5" fill="#f7931e"/>
-      <circle cx="900" cy="160" r="1" fill="#ff6b35"/>
-      <circle cx="1050" cy="240" r="2" fill="#ffd23f"/>
-      
-      <circle cx="200" cy="400" r="1" fill="#ffd23f"/>
-      <circle cx="400" cy="450" r="1.5" fill="#f7931e"/>
-      <circle cx="600" cy="380" r="1" fill="#ff6b35"/>
-      <circle cx="800" cy="420" r="2" fill="#ffd23f"/>
-      <circle cx="1000" cy="350" r="1.5" fill="#f7931e"/>
-    </g>
-    
-    <!-- Crime/action style text overlay areas -->
-    <g opacity="0.1">
-      <rect x="50" y="50" width="300" height="100" fill="url(#neonGradient)" filter="url(#hardShadow)"/>
-      <rect x="850" y="600" width="300" height="100" fill="url(#neonGradient)" filter="url(#hardShadow)"/>
-    </g>
-    
-    <!-- Dramatic corner vignette -->
-    <g opacity="0.4">
-      <polygon points="0,0 0,200 200,0" fill="#000000"/>
-      <polygon points="1200,0 1000,0 1200,200" fill="#000000"/>
-      <polygon points="0,800 200,800 0,600" fill="#000000"/>
-      <polygon points="1200,800 1200,600 1000,800" fill="#000000"/>
+    <!-- Unicorn Horn -->
+    <g transform="translate(500,500)">
+      <path d="M0,-200 L20,-180 L0,-160 L-20,-180 Z" fill="url(#unicorn-horn)" opacity="0.9">
+        <animateTransform attributeName="transform" type="rotate" from="-10" to="10" dur="0.3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="0.3s" repeatCount="indefinite" />
+      </path>
+      <circle cx="0" cy="-200" r="10" fill="#fff" opacity="0.9">
+        <animate attributeName="r" values="10;15;10" dur="0.3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.9;1;0.9" dur="0.3s" repeatCount="indefinite" />
+      </circle>
     </g>
   </svg>
   <header>
-    <svg class="logo" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <svg class="logo" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <!-- Logo gradient -->
-        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
-          <stop offset="50%" style="stop-color:#f7931e;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#ffd23f;stop-opacity:1" />
+        <linearGradient id="logoWildGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ff6bcb"/>
+          <stop offset="30%" stop-color="#ffe066"/>
+          <stop offset="60%" stop-color="#b5fff9"/>
+          <stop offset="100%" stop-color="#ffb7ff"/>
         </linearGradient>
-        
-        <!-- Car silhouette gradient -->
-        <linearGradient id="carGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
-        </linearGradient>
-        
-        <!-- Glow effect -->
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-          <feMerge> 
-            <feMergeNode in="coloredBlur"/>
+        <filter id="logoGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="8" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
-        
-        <!-- Drop shadow -->
-        <filter id="dropshadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.3"/>
-        </filter>
       </defs>
-      
-      <!-- Car silhouette -->
-      <g transform="translate(200, 60)">
-        <!-- Car body -->
-        <path d="M-80,-25 L-65,-40 L-40,-40 L-25,-30 L25,-30 L40,-40 L65,-40 L80,-25 L80,10 L65,18 L50,18 L50,10 L-50,10 L-50,18 L-65,18 L-80,10 Z" 
-              fill="url(#carGradient)" 
-              filter="url(#dropshadow)"/>
-        
-        <!-- Car windows -->
-        <path d="M-60,-30 L-45,-35 L-20,-35 L-15,-30 L15,-30 L20,-35 L45,-35 L60,-30 L60,-10 L-60,-10 Z" 
-              fill="#87ceeb" 
-              opacity="0.8"/>
-        
-        <!-- Car wheels -->
-        <circle cx="-45" cy="15" r="10" fill="#2c3e50" stroke="#34495e" stroke-width="1.5"/>
-        <circle cx="45" cy="15" r="10" fill="#2c3e50" stroke="#34495e" stroke-width="1.5"/>
-        <circle cx="-45" cy="15" r="5" fill="#7f8c8d"/>
-        <circle cx="45" cy="15" r="5" fill="#7f8c8d"/>
-        
-        <!-- Car details -->
-        <rect x="-65" y="-28" width="5" height="4" fill="#f39c12" rx="1"/>
-        <rect x="60" y="-28" width="5" height="4" fill="#f39c12" rx="1"/>
-        <rect x="-10" y="-38" width="20" height="2" fill="#34495e" rx="1"/>
-      </g>
-      
-      <!-- Logo text -->
-      <g transform="translate(200, 130)">
-        <!-- Main title -->
-        <text x="0" y="0" 
-              font-family="Arial Black, sans-serif" 
-              font-size="32" 
-              font-weight="bold" 
-              text-anchor="middle" 
-              fill="url(#logoGradient)" 
-              filter="url(#glow)">
-          CARS-R-US
+      <!-- Pulsing, sparkling, rainbow logo text -->
+      <g filter="url(#logoGlow)">
+        <text x="300" y="120" font-size="80" font-family="'Arial Black', Arial, sans-serif" fill="url(#logoWildGradient)" stroke="#fff" stroke-width="2" letter-spacing="4" text-anchor="middle">
+          Cars R Us
+          <animate attributeName="stroke-width" values="2;6;2" dur="2.5s" repeatCount="indefinite"/>
         </text>
-        
-        <!-- Subtitle -->
-        <text x="0" y="22" 
-              font-family="Arial, sans-serif" 
-              font-size="11" 
-              text-anchor="middle" 
-              fill="#2c3e50" 
-              opacity="0.8">
-          Custom Car Detailing &amp; Design
-        </text>
-        
-        <!-- Decorative elements -->
-        <line x1="-80" y1="35" x2="-20" y2="35" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
-        <line x1="20" y1="35" x2="80" y2="35" stroke="url(#logoGradient)" stroke-width="2" stroke-linecap="round"/>
-        
-        <!-- Small icons -->
-        <g transform="translate(-90, 32)">
-          <circle cx="0" cy="0" r="5" fill="url(#logoGradient)"/>
-          <path d="M-2,-1 L0,1 L2,-1" stroke="#ffffff" stroke-width="1" stroke-linecap="round" fill="none"/>
-        </g>
-        
-        <g transform="translate(90, 32)">
-          <circle cx="0" cy="0" r="5" fill="url(#logoGradient)"/>
-          <path d="M-2,-1 L0,1 L2,-1" stroke="#ffffff" stroke-width="1" stroke-linecap="round" fill="none"/>
-        </g>
+        <!-- Sparkles on logo -->
+        <circle cx="150" cy="90" r="7" fill="#fff" opacity="0.8">
+          <animate attributeName="r" values="7;14;7" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+        <polygon points="450,80 453,90 463,93 453,96 450,106 447,96 437,93 447,90" fill="#fff" opacity="0.7">
+          <animateTransform attributeName="transform" type="rotate" from="0 450 93" to="360 450 93" dur="2.5s" repeatCount="indefinite"/>
+        </polygon>
       </g>
     </svg>
   </header>
