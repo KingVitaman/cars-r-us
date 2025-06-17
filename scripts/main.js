@@ -31,5 +31,6 @@ const renderOptions = async () => {
         </section>
     `;
 };
+document.addEventListener("neworderCreated", renderOptions)
 
 renderOptions();
