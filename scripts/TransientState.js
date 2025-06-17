@@ -21,18 +21,32 @@ export const setTechnology = (technologyChoice) => {
     transientState.technologyId = technologyChoice
 }
 
+export const getTransientState = () => ({ ...transientState });
+
+export const resetTransientState = () => {
+    transientState.paintId = ""
+    transientState.interiorId = ""
+    transientState.technologyId = ""
+    transientState.wheelId = ""
+}
+
+// Function to convert transient state to permanent state (place order)
 export const placeOrder = async () => {
+    const orderToSend = { ...transientState };
+
     const postOptions = {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(transientState)
+        body: JSON.stringify(orderToSend)
     }
 
-    await fetch("http://localhost:8088/main", postOptions)
+    const response = await fetch("http://localhost:8088/orders", postOptions)
+    const newOrder = await response.json()
 
-    // Dispatch a custom event when the order is complete
-    const customEvent = new CustomEvent("neworderCreated")
-    document.dispatchEvent(customEvent)
+    // Reset transient state and dispatch event after order is placed
+    resetTransientState();
+    document.dispatchEvent(new CustomEvent("neworderCreated"));
+    return newOrder;
 }

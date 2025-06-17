@@ -6,7 +6,7 @@ export const interiorOptions = async () => {
     let optionsHTML = '<select name="interior" id="interior">'
     optionsHTML += `<option value="">---------</option>`
     optionsHTML += interiors.map(interior => {
-        return `<option value="${interior.id}">${interior.type}</option>`
+        return `<option value="${interior.id}">${interior.type} ($${interior.price.toFixed(2)})</option>`
     }).join("")
     optionsHTML += '</select>'
     return optionsHTML

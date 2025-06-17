@@ -1,0 +1,159 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #161B22; /* Changed to a more neutral dark gray/blue */
+    color: #333;
+    line-height: 1.6;
+}
+
+#container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Header and Titles */
+header {
+    text-align: center;
+    padding-bottom: 0px;
+    border-bottom: none; /* Removed the border bottom */
+}
+
+header svg.logo {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #007bff; /* A nice primary blue */
+    font-size: 2.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #555;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 5px;
+}
+
+/* Sections for Options */
+section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Dropdown Styles */
+select {
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    -webkit-appearance: none; /* Remove default arrow on WebKit */
+    -moz-appearance: none; /* Remove default arrow on Firefox */
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-15.8%208.1-3.5%204.9-3.5%2011.1%200%2016l128%20140c3.5%204.9%209.3%208.1%2015.8%208.1s12.3-3.2%2015.8-8.1l128-140c3.5-4.9%203.5-11.1%200-16z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Button Styles */
+.orderButton {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #004085;
+    transform: translateY(0);
+}
+
+/* Custom Orders Section */
+.customOrders ul {
+    list-style: none;
+    padding: 0;
+}
+
+.customOrders li {
+    background-color: #e9f7fe;
+    border: 1px solid #b3e0ff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.customOrders h2 {
+    color: #007bff;
+    margin-top: 0;
+}
+
+.order-container {
+    background-color: #e9f7fe;
+    border: 1px solid #b3e0ff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.order-container p {
+    margin: 5px 0;
+    color: #444;
+}
+
+/* SVG Background Pattern (applied directly to the SVG element in HTML) */
+.svg-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.8; /* Adjusted for better visibility with new background */
+    pointer-events: none; /* Ensure it doesn't interfere with interaction */
+}
